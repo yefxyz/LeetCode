@@ -16,4 +16,7 @@ public class Constants {
 		ADD_TWO_NUMBER_02.next.next = new ListNode(4);
 	}
 
+	public static final String LONGEST_SUBSTRING_CASE = "pwwkew";
+	
+	
 }

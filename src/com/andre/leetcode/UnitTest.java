@@ -17,7 +17,7 @@ public class UnitTest {
 		System.out.println("Two Sum performance: " + duration + " nanoseconds.");
 	}
 
-	@Test
+	// @Test
 	public void testAddTwoNumbers() {
 		ListNode result = Solution.addTwoNumbers(Constants.ADD_TWO_NUMBER_01, Constants.ADD_TWO_NUMBER_02);
 		Assert.assertNotNull(result);
@@ -29,7 +29,15 @@ public class UnitTest {
 			nRes = nRes + iterNode.val * (int) Math.pow(10, digit++);
 			iterNode = iterNode.next;
 		}
-		System.out.println(nRes);
+		System.out.println("Add two numbers: " + nRes);
+	}
+
+	@Test
+	public void testLongestSubstring() {
+		// int result = Solution.lengthOfLongestSubstring(Constants.LONGEST_SUBSTRING_CASE);
+		int result = Solution.lengthOfLongestSubstring2(Constants.LONGEST_SUBSTRING_CASE);
+		System.out
+				.println("The longest substring of \"" + Constants.LONGEST_SUBSTRING_CASE + "\" length is : " + result);
 	}
 
 }

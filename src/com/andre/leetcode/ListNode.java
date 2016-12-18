@@ -1,7 +1,7 @@
 package com.andre.leetcode;
 
 /**
- * ��������ʾһ���Ǹ�������ÿһ���ڵ���һλ�����ӵ͵��ߡ�
+ * 以链表表示一个非负整数，每一个节点是一位数，从低到高。
  * 
  * @author Andre
  */

@@ -2,11 +2,12 @@ package com.andre.leetcode;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 public class Solution {
 
 	/**
-	 * ¸ø¶¨Ò»¸öÕûÊıÊı×éºÍÒ»¸öÄ¿±êÕûÊı£¬ÈôÊı×éÖĞÓĞÁ½¸öÔªËØ¼ÓºÍµÈÓÚÄ¿±ê£¬·µ»ØÕâÁ½¸öÔªËØµÄÏÂ±ê¡£
+	 * ç»™å®šä¸€ä¸ªæ•´æ•°æ•°ç»„å’Œä¸€ä¸ªç›®æ ‡æ•´æ•°ï¼Œè‹¥æ•°ç»„ä¸­æœ‰ä¸¤ä¸ªå…ƒç´ åŠ å’Œç­‰äºç›®æ ‡ï¼Œè¿”å›è¿™ä¸¤ä¸ªå…ƒç´ çš„ä¸‹æ ‡ã€‚
 	 * 
 	 * @param nums
 	 * @param target
@@ -41,7 +42,7 @@ public class Solution {
 	}
 
 	/**
-	 * ÓÃÒ»¸öÁ´±í½á¹¹±íÊ¾Ò»¸ö·Ç¸ºÕûÊı£¬½«Á½¸öÊıÏà¼Ó¡£
+	 * ç”¨ä¸€ä¸ªé“¾è¡¨ç»“æ„è¡¨ç¤ºä¸€ä¸ªéè´Ÿæ•´æ•°ï¼Œå°†ä¸¤ä¸ªæ•°ç›¸åŠ ã€‚
 	 * 
 	 * @param l1
 	 * @param l2
@@ -53,7 +54,7 @@ public class Solution {
 		return head.next;
 	}
 
-	public static void addNode(ListNode last, ListNode l1, ListNode l2, int carry) {
+	private static void addNode(ListNode last, ListNode l1, ListNode l2, int carry) {
 		int sum = (l1 != null ? l1.val : 0) + (l2 != null ? l2.val : 0) + carry;
 		if (l1 == null && l2 == null && sum == 0) {
 			return;
@@ -61,6 +62,53 @@ public class Solution {
 			last.next = new ListNode(sum % 10);
 			addNode(last.next, l1 != null ? l1.next : null, l2 != null ? l2.next : null, sum / 10);
 		}
+	}
+
+	public static int lengthOfLongestSubstring(String s) {
+		int result = 0;
+		String sub = "";
+		for (int i = 0; i < s.length(); i++) {
+			char c = s.charAt(i);
+			int idx = sub.indexOf(c);
+			if (idx == -1) {
+				sub = sub + c;
+			} else {
+				if (result < sub.length()) {
+					result = sub.length();
+				}
+				sub = sub.substring(idx + 1) + c;
+			}
+		}
+		return result < sub.length() ? sub.length() : result;
+	}
+
+	public static int lengthOfLongestSubstring2(String s) {
+		int lls = 0;
+		String ls = "";
+		int i = 0;
+		while (i < s.length()) {
+			int idx = ls.indexOf(s.charAt(i));
+			if (idx == -1) {
+				ls = ls + s.charAt(i);
+			} else {
+				ls = ls.substring(idx + 1) + s.charAt(i);
+			}
+			lls = Math.max(lls, ls.length());
+			i++;
+		}
+		return lls;
+	}
+
+	public static int lengthOfLongestSubstring3(String s) {
+		int lls = 0;
+		int[] map = IntStream.generate(() -> -1).limit(256).toArray();
+		for (int i = 0, j = 0; i < s.length(); i++) {
+			int c = s.charAt(i);
+			j = Math.max(j, map[c] + 1);
+			map[c] = i;
+			lls = Math.max(lls, i - j + 1);
+		}
+		return lls;
 	}
 
 }
