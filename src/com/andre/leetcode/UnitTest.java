@@ -32,12 +32,18 @@ public class UnitTest {
 		System.out.println("Add two numbers: " + nRes);
 	}
 
-	@Test
+	// @Test
 	public void testLongestSubstring() {
 		// int result = Solution.lengthOfLongestSubstring(Constants.LONGEST_SUBSTRING_CASE);
 		int result = Solution.lengthOfLongestSubstring2(Constants.LONGEST_SUBSTRING_CASE);
 		System.out
 				.println("The longest substring of \"" + Constants.LONGEST_SUBSTRING_CASE + "\" length is : " + result);
+	}
+	
+	@Test
+	public void testMedianOfSortedArrays() {
+		double result = Solution.findMedianSortedArrays2(Constants.MEDIAN_OF_TWO_ARRAYS_01, Constants.MEDIAN_OF_TWO_ARRAYS_02);
+		System.out.println("Median: " + result);
 	}
 
 }

@@ -17,6 +17,7 @@ public class Constants {
 	}
 
 	public static final String LONGEST_SUBSTRING_CASE = "pwwkew";
-	
-	
+
+	public static final int[] MEDIAN_OF_TWO_ARRAYS_01 = {2, 6, 7, 9, 10};
+	public static final int[] MEDIAN_OF_TWO_ARRAYS_02 = {1, 3, 4, 5, 8};
 }

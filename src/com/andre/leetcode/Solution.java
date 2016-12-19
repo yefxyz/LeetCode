@@ -1,8 +1,8 @@
 package com.andre.leetcode;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.IntStream;
 
 public class Solution {
 
@@ -64,6 +64,12 @@ public class Solution {
 		}
 	}
 
+	/**
+	 * 求字符串中无重复字母的最长子串长度。
+	 * 
+	 * @param s
+	 * @return
+	 */
 	public static int lengthOfLongestSubstring(String s) {
 		int result = 0;
 		String sub = "";
@@ -101,7 +107,8 @@ public class Solution {
 
 	public static int lengthOfLongestSubstring3(String s) {
 		int lls = 0;
-		int[] map = IntStream.generate(() -> -1).limit(256).toArray();
+		int[] map = new int[256];
+		Arrays.fill(map, -1);
 		for (int i = 0, j = 0; i < s.length(); i++) {
 			int c = s.charAt(i);
 			j = Math.max(j, map[c] + 1);
@@ -109,6 +116,99 @@ public class Solution {
 			lls = Math.max(lls, i - j + 1);
 		}
 		return lls;
+	}
+
+	/**
+	 * 求两个有序整数数组所有元素的中位数。
+	 * 
+	 * @param nums1
+	 * @param nums2
+	 * @return
+	 */
+	public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+		int[] arr = Arrays.copyOf(nums1, nums1.length + nums2.length);
+		System.arraycopy(nums2, 0, arr, nums1.length, nums2.length);
+		doHandleArray(arr, nums1.length);
+		int idx1 = arr.length / 2;
+		int idx2 = idx1 - 1 + arr.length % 2;
+		return (double) (arr[idx1] + arr[idx2]) / 2;
+	}
+
+	private static void doHandleArray(int[] arr, int idx) {
+		if (idx == 0 || idx == arr.length || arr[idx - 1] <= arr[idx]) {
+			return;
+		}
+		int axis = arr[idx - 1];
+		int i = idx;
+		while (i < arr.length && arr[i] < axis) {
+			arr[i - 1] = arr[i++];
+		}
+		arr[i - 1] = axis;
+		doHandleArray(arr, idx - 1);
+	}
+
+	/**
+	 * 算法思路参见Evernote中的说明。
+	 * 
+	 * @param nums1
+	 * @param nums2
+	 * @return
+	 */
+	public static double findMedianSortedArrays2(int[] nums1, int[] nums2) {
+		int m = nums1.length;
+		int n = nums2.length;
+		if (m > n) {
+			int temp = m;
+			m = n;
+			n = temp;
+			int[] tempArr = nums1;
+			nums1 = nums2;
+			nums2 = tempArr;
+		}
+
+		int iMin = 0;
+		int iMax = m;
+		while (iMin <= iMax) {
+			int i = (iMin + iMax) / 2;
+			int j = (m + n + 1) / 2 - i;
+
+			if (i < m && nums2[j - 1] > nums1[i]) {
+				// i 值太小。
+				iMin = iMin + 1;
+			} else if (i > 0 && nums1[i - 1] > nums2[j]) {
+				// i 值太大。
+				iMax = i - 1;
+			} else {
+				// i 值正好，命中。
+
+				int maxL = 0;
+				int minR = 0;
+
+				if (i == 0) {
+					maxL = nums2[j - 1];
+				} else if (j == 0) {
+					maxL = nums1[i - 1];
+				} else {
+					maxL = Math.max(nums1[i - 1], nums2[j - 1]);
+				}
+
+				if ((m + n) % 2 == 1) {
+					return maxL;
+				}
+
+				if (i == m) {
+					minR = nums2[j];
+				} else if (j == n) {
+					minR = nums1[i];
+				} else {
+					minR = Math.min(nums1[i], nums2[j]);
+				}
+
+				return (double) (maxL + minR) / 2;
+			}
+		}
+
+		return -1;
 	}
 
 }
