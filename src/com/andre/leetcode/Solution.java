@@ -211,4 +211,73 @@ public class Solution {
 		return -1;
 	}
 
+	/**
+	 * 最长回文子串。
+	 * 
+	 * @param s
+	 * @return
+	 */
+	static Map<Integer, String> longestPalindrome_map = new HashMap<>();
+	public static String longestPalindrome(String s) {
+		int len = s.length();
+		if (len == 1) {
+			return s;
+		}
+		for (int n = len; n >= 1; n--) {
+			if (longestPalindrome_map.containsKey(n)) {
+				return longestPalindrome_map.get(n);
+			}
+			for (int i = 0; i < len - n + 1; i++) {
+				String sub = s.substring(i, i + n);
+				if (checkPalindrome(sub, longestPalindrome_map)) {
+					return sub;
+				}
+			}
+		}
+		return "";
+	}
+
+	private static boolean checkPalindrome(String s, Map<Integer, String> map) {
+		int len = s.length();
+		if (len == 1) {
+			return true;
+		}
+		for (int i = len / 2 - 1; i >= 0; i--) {
+			if (s.charAt(i) != s.charAt(len - i - 1)) {
+				return false;
+			} else {
+				map.put(len - 2 * i, s.substring(i, len - i));
+			}
+		}
+		return true;
+	}
+
+	static int longestPalindrome_n = 0;
+	static int longestPalindrome_i = 0;
+	public static String longestPalindrome2(String s) {
+		int len = s.length();
+		if (len == 1) {
+			return s;
+		}
+
+		for (int i = 0; i < len - 1; i++) {
+			// 假设最长子串长度为奇数。
+			extendPalindrome(s, i, i);
+			// 假设最长子串长度为偶数。
+			extendPalindrome(s, i, i + 1);
+		}
+		return s.substring(longestPalindrome_i, longestPalindrome_i + longestPalindrome_n);
+	}
+
+	private static void extendPalindrome(String s, int i, int j) {
+		while (i >= 0 && j < s.length() && s.charAt(i) == s.charAt(j)) {
+			i--;
+			j++;
+		}
+		if (longestPalindrome_n < j - i - 1) {
+			longestPalindrome_n = j - i - 1;
+			longestPalindrome_i = i + 1;
+		}
+	}
+
 }

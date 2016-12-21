@@ -39,11 +39,18 @@ public class UnitTest {
 		System.out
 				.println("The longest substring of \"" + Constants.LONGEST_SUBSTRING_CASE + "\" length is : " + result);
 	}
-	
-	@Test
+
+	// @Test
 	public void testMedianOfSortedArrays() {
-		double result = Solution.findMedianSortedArrays2(Constants.MEDIAN_OF_TWO_ARRAYS_01, Constants.MEDIAN_OF_TWO_ARRAYS_02);
+		double result = Solution.findMedianSortedArrays2(Constants.MEDIAN_OF_TWO_ARRAYS_01,
+				Constants.MEDIAN_OF_TWO_ARRAYS_02);
 		System.out.println("Median: " + result);
+	}
+
+	@Test
+	public void testLongestPalindrome() {
+		String s = Solution.longestPalindrome2(Constants.LONGEST_PALINDROME_CASE);
+		System.out.println(s);
 	}
 
 }
