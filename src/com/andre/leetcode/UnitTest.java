@@ -47,9 +47,16 @@ public class UnitTest {
 		System.out.println("Median: " + result);
 	}
 
-	@Test
+	// @Test
 	public void testLongestPalindrome() {
 		String s = Solution.longestPalindrome2(Constants.LONGEST_PALINDROME_CASE);
+		System.out.println(s);
+	}
+
+	@Test
+	public void testZigzagConvert() {
+		String s = Solution.zigzagConvert(Constants.ZIGZAG_CONVERT_CASE, 3);
+		// String s = Solution.zigzagConvert("abcd", 2);
 		System.out.println(s);
 	}
 

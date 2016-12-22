@@ -259,7 +259,6 @@ public class Solution {
 		if (len == 1) {
 			return s;
 		}
-
 		for (int i = 0; i < len - 1; i++) {
 			// 假设最长子串长度为奇数。
 			extendPalindrome(s, i, i);
@@ -278,6 +277,44 @@ public class Solution {
 			longestPalindrome_n = j - i - 1;
 			longestPalindrome_i = i + 1;
 		}
+	}
+
+	/**
+	 * 字符串锯齿（Zigzag）转折编码。
+	 * 
+	 * @param s
+	 * @param rows
+	 * @return
+	 */
+	public static String zigzagConvert(String s, int rows) {
+		int len = s.length();
+		// rows + rows - 2，即2 * (rows - 1)个字母会占据1 + rows - 2 = rows - 1列。
+		int zz = rows + rows - 2;
+		if (len <= rows || zz == 0) {
+			return s;
+		}
+		// int left = len % zz;
+		// int cols = len / zz * (rows - 1) + (left <= rows ? 1 : 1 + left - rows);
+		// Character[][] matrix = new Character[rows][cols];
+
+		StringBuilder[] sbArr = new StringBuilder[rows];
+		for (int i = 0; i < sbArr.length; i++) {
+			sbArr[i] = new StringBuilder();
+		}
+		for (int i = 0; i < len; i++) {
+			// int x1 = i / zz;
+			int x2 = i % zz;
+			int m = x2 < rows ? x2 : zz - x2;
+			// int n = x2 < rows ? x1 * (rows - 1) : x1 * (rows - 1) + x2 - rows + 1;
+			// matrix[m][n] = s.charAt(i);
+			sbArr[m].append(s.charAt(i));
+		}
+
+		StringBuilder resSB = new StringBuilder();
+		for (StringBuilder sb : sbArr) {
+			resSB.append(sb);
+		}
+		return resSB.toString();
 	}
 
 }
