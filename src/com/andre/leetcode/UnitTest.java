@@ -53,11 +53,25 @@ public class UnitTest {
 		System.out.println(s);
 	}
 
-	@Test
+	// @Test
 	public void testZigzagConvert() {
 		String s = Solution.zigzagConvert(Constants.ZIGZAG_CONVERT_CASE, 3);
 		// String s = Solution.zigzagConvert("abcd", 2);
 		System.out.println(s);
 	}
 
+	// @Test
+	public void testReverseInt() {
+		int x = Solution.reverseInt(Constants.REVERSE_INT_CASE);
+		System.out.println(x);
+	}
+
+	@Test
+	public void testMyAtoi() {
+		for (String s : Constants.STRING_TO_INT_CASE) {
+			int x = Solution.myAtoi(s);
+			System.out.println(s + " atoi: " + x);
+		}
+	}
+	
 }

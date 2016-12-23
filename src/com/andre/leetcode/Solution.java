@@ -317,4 +317,81 @@ public class Solution {
 		return resSB.toString();
 	}
 
+	/**
+	 * 倒转一个整数，若溢出整数范围，返回0。
+	 * 
+	 * @param x
+	 * @return
+	 */
+	public static int reverseInt(int x) {
+		long result = 0;
+
+		int temp = x;
+		while (Math.abs(temp) > 0) {
+			result = result * 10 + temp % 10;
+			temp = temp / 10;
+		}
+
+		if (Math.abs(result) > Integer.MAX_VALUE) {
+			result = 0;
+		}
+		return (int) result;
+	}
+
+	public static int reverseInt2(int x) {
+		int result = 0;
+		int last = 0;
+		while (Math.abs(x) > 0) {
+			last = result;
+			result = result * 10 + x % 10;
+			x = x / 10;
+		}
+		// 只需要判断最后结果和上一次即可知道是否溢出。
+		if (result / 10 != last) {
+			return 0;
+		}
+		return result;
+	}
+
+	/**
+	 * 字符串转整数。
+	 * 
+	 * @param str
+	 * @return
+	 */
+	public static int myAtoi(String str) {
+		int n = str.length();
+		int result = 0;
+		int last = 0;
+		int sign = 0;
+		int idx = 0;
+		if (n == 0) {
+			return 0;
+		}
+		// 起始空格与正负号的处理放到for循环外面，提高速度。
+		while (str.charAt(idx) == ' ') {
+			idx++;
+		}
+		if (str.charAt(idx) == '+' || str.charAt(idx) == '-') {
+			sign = str.charAt(idx) == '+' ? 1 : -1;
+			idx++;
+		}
+		for (int i = idx; i < n; i++) {
+			char c = str.charAt(i);
+			if (i >= 0 && c >= '0' && c <= '9') {
+				last = result;
+				result = result * 10 + (c - '0');
+			} else {
+				break;
+			}
+		}
+		if (sign == 0) {
+			sign = 1;
+		}
+		if (result / 10 != last) {
+			return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+		}
+		return sign * result;
+	}
+
 }
