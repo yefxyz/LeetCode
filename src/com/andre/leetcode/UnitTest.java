@@ -66,12 +66,18 @@ public class UnitTest {
 		System.out.println(x);
 	}
 
-	@Test
+	// @Test
 	public void testMyAtoi() {
 		for (String s : Constants.STRING_TO_INT_CASE) {
 			int x = Solution.myAtoi(s);
 			System.out.println(s + " atoi: " + x);
 		}
 	}
-	
+
+	@Test
+	public void testRegExpMatch() {
+		boolean res = Solution.isRegExpMatch(Constants.REGULAR_EXPRESSION_S, Constants.REGULAR_EXPRESSION_P);
+		System.out.println("RegExp match result: " + res);
+	}
+
 }

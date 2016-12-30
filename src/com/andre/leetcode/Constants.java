@@ -27,6 +27,9 @@ public class Constants {
 
 	public static final int REVERSE_INT_CASE = -1563847412;
 
-	public static final String[] STRING_TO_INT_CASE = {"-123", "  00010", "+342  726", "  -173adf0", "", "0",
-			"2147483648", "-2147483649"};
+	public static final String[] STRING_TO_INT_CASE = {"-123", "  00010", "+342  726", "  -173adf0", "", "0", "2147483648", "-2147483649"};
+
+	public static final String REGULAR_EXPRESSION_S = "ab";
+	public static final String REGULAR_EXPRESSION_P = "c*ab*";
+
 }

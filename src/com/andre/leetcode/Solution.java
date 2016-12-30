@@ -415,4 +415,39 @@ public class Solution {
 		return x == rev || x == rev / 10;
 	}
 
+	/**
+	 * 正则表达式匹配。支持 '.' 和 '*' 。
+	 * 
+	 * @param s
+	 * @param p
+	 * @return
+	 */
+	public static boolean isRegExpMatch(String s, String p) {
+		int m = s.length(), n = p.length();
+		// dp[m][n] 代表 s 匹配 p。
+		boolean[][] dp = new boolean[m + 1][n + 1];
+		// 空串相互匹配。
+		dp[0][0] = true;
+		// 状态转移。
+		for (int i = 0; i <= m; i++) {
+			for (int j = 1; j <= n; j++) {
+				// 如果模式字符不是 '*' 。
+				if (p.charAt(j - 1) != '*') {
+					dp[i][j] =
+							// 字符相同或模式字符为 '.' 。
+							i > 0 && dp[i - 1][j - 1] && (p.charAt(j - 1) == s.charAt(i - 1) || p.charAt(j - 1) == '.');
+				}
+				// 如果模式字符是 '*' 。
+				else {
+					dp[i][j] =
+							// 模式 ?* 只重复0次的情况。
+							dp[i][j - 2]
+									// 模式 ?* 至少重复1次。
+									|| (i > 0 && dp[i - 1][j] && (p.charAt(j - 2) == s.charAt(i - 1) || p.charAt(j - 2) == '.'));
+				}
+			}
+		}
+		return dp[m][n];
+	}
+
 }
