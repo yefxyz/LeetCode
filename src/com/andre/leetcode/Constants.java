@@ -32,4 +32,6 @@ public class Constants {
 	public static final String REGULAR_EXPRESSION_S = "ab";
 	public static final String REGULAR_EXPRESSION_P = "c*ab*";
 
+	public static final int[] MAX_AREA_CASE = {1, 2, 12, 2, 3, 3, 10, 7, 6, 8};
+
 }

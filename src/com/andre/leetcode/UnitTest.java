@@ -74,10 +74,16 @@ public class UnitTest {
 		}
 	}
 
-	@Test
+	// @Test
 	public void testRegExpMatch() {
 		boolean res = Solution.isRegExpMatch(Constants.REGULAR_EXPRESSION_S, Constants.REGULAR_EXPRESSION_P);
 		System.out.println("RegExp match result: " + res);
 	}
 
+	@Test
+	public void testMaxArea() {
+		int result = Solution.maxArea(Constants.MAX_AREA_CASE);
+		System.out.println(result);
+	}
+	
 }

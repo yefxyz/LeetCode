@@ -450,4 +450,32 @@ public class Solution {
 		return dp[m][n];
 	}
 
+	public static int maxArea(int[] h) {
+		// 效率太低。
+		// int n = h.length;
+		// int[][] f = new int[n][n];
+		// f[0][1] = Math.min(h[0], h[1]);
+		// int ma = f[0][1];
+		// for (int i = 0; i < n; i++) {
+		// for (int j = i + 1; j < n; j++) {
+		// int a = (j - i) * Math.min(h[i], h[j]);
+		// ma = Math.max(a, ma);
+		// }
+		// }
+		// return ma;
+
+		int n = h.length;
+		int l = 0, r = n - 1;
+		int m = 0;
+		while (l < r) {
+			m = Math.max(m, (r - l) * Math.min(h[l], h[r]));
+			if (h[l] < h[r]) {
+				l++;
+			} else {
+				r--;
+			}
+		}
+		return m;
+	}
+
 }
