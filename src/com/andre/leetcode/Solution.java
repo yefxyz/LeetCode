@@ -478,4 +478,78 @@ public class Solution {
 		return m;
 	}
 
+	public static String intToRoman(int n) {
+		StringBuilder sb = new StringBuilder("");
+		char[] roman = {'I', 'V', 'X', 'L', 'C', 'D', 'M'};
+		int i = roman.length - 1;
+		while (n > 0) {
+			int div1 = romanDivisor(i);
+			int div2 = romanDivisor(i - 1);
+			int div3 = romanDivisor(i - 2);
+			int x = n / div1, y = n / div2;
+			if (x <= 0 && y <= 0) {
+				i--;
+				continue;
+			}
+			if (x > 0) {
+				int z = n % div1 / div2;
+				if (z > 3) {
+					sb.append(roman[i - 1]).append(roman[i + 1]);
+					n = n % div2;
+				} else {
+					sb = appendRoman(sb, x, roman[i]);
+					n = n % div1;
+				}
+				i--;
+			} else if (y > 3) {
+				sb.append(roman[i - 1]).append(roman[i]);
+				n = n % div2;
+				i--;
+			} else {
+				int z = n % div2 / div3;
+				if (z > 3) {
+					sb.append(roman[i - 2]).append(roman[i]);
+					n = n % div3;
+					i = i - 2;
+				} else {
+					sb = appendRoman(sb, y, roman[i - 1]);
+					n = n % div2;
+					i--;
+				}
+			}
+		}
+		return sb.toString();
+	}
+	private static StringBuilder appendRoman(StringBuilder s, int n, char c) {
+		for (int i = 0; i < n; i++) {
+			s.append(c);
+		}
+		return s;
+	}
+	private static int romanDivisor(int i) {
+		int p1 = i / 2;
+		int p2 = (int) Math.ceil(i / 2D);
+		return (int) (Math.pow(2, p1) * Math.pow(5, p2));
+	}
+
+	public static String intToRoman2(int num) {
+		String M[] = {"", "M", "MM", "MMM"};
+		String C[] = {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
+		String X[] = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
+		String I[] = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
+		return M[num / 1000] + C[(num % 1000) / 100] + X[(num % 100) / 10] + I[num % 10];
+	}
+
+	public static String intToRoman3(int num) {
+		int[] values = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+		String[] strs = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < values.length; i++) {
+			while (num >= values[i]) {
+				num -= values[i];
+				sb.append(strs[i]);
+			}
+		}
+		return sb.toString();
+	}
 }

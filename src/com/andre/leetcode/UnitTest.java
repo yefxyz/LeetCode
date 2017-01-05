@@ -80,10 +80,16 @@ public class UnitTest {
 		System.out.println("RegExp match result: " + res);
 	}
 
-	@Test
+	// @Test
 	public void testMaxArea() {
 		int result = Solution.maxArea(Constants.MAX_AREA_CASE);
 		System.out.println(result);
 	}
-	
+
+	@Test
+	public void testInt2Roman() {
+		String result = Solution.intToRoman(Constants.INT_TO_ROMAN_CASE);
+		System.out.println(result);
+	}
+
 }

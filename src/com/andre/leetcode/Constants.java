@@ -34,4 +34,5 @@ public class Constants {
 
 	public static final int[] MAX_AREA_CASE = {1, 2, 12, 2, 3, 3, 10, 7, 6, 8};
 
+	public static final int INT_TO_ROMAN_CASE = 3201;
 }
