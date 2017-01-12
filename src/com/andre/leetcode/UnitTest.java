@@ -10,7 +10,7 @@ public class UnitTest {
 		int runTimes = 100_000;
 		long start = System.nanoTime();
 		for (int i = 0; i < runTimes; i++) {
-			int[] twoSumArr = Solution.twoSum(Constants.TWO_SUM_SOURCE_NUMBERS, 18);
+			int[] twoSumArr = Solution01.twoSum(Constants.TWO_SUM_SOURCE_NUMBERS, 18);
 			// int[] twoSumArr = Solution.twoSumWithMap(Constants.TWO_SUM_SOURCE_NUMBERS, 18);
 		}
 		long duration = (System.nanoTime() - start) / runTimes;
@@ -19,7 +19,7 @@ public class UnitTest {
 
 	// @Test
 	public void testAddTwoNumbers() {
-		ListNode result = Solution.addTwoNumbers(Constants.ADD_TWO_NUMBER_01, Constants.ADD_TWO_NUMBER_02);
+		ListNode result = Solution01.addTwoNumbers(Constants.ADD_TWO_NUMBER_01, Constants.ADD_TWO_NUMBER_02);
 		Assert.assertNotNull(result);
 
 		int nRes = 0;
@@ -35,60 +35,73 @@ public class UnitTest {
 	// @Test
 	public void testLongestSubstring() {
 		// int result = Solution.lengthOfLongestSubstring(Constants.LONGEST_SUBSTRING_CASE);
-		int result = Solution.lengthOfLongestSubstring2(Constants.LONGEST_SUBSTRING_CASE);
+		int result = Solution01.lengthOfLongestSubstring2(Constants.LONGEST_SUBSTRING_CASE);
 		System.out
 				.println("The longest substring of \"" + Constants.LONGEST_SUBSTRING_CASE + "\" length is : " + result);
 	}
 
 	// @Test
 	public void testMedianOfSortedArrays() {
-		double result = Solution.findMedianSortedArrays2(Constants.MEDIAN_OF_TWO_ARRAYS_01,
+		double result = Solution01.findMedianSortedArrays2(Constants.MEDIAN_OF_TWO_ARRAYS_01,
 				Constants.MEDIAN_OF_TWO_ARRAYS_02);
 		System.out.println("Median: " + result);
 	}
 
 	// @Test
 	public void testLongestPalindrome() {
-		String s = Solution.longestPalindrome2(Constants.LONGEST_PALINDROME_CASE);
+		String s = Solution01.longestPalindrome2(Constants.LONGEST_PALINDROME_CASE);
 		System.out.println(s);
 	}
 
 	// @Test
 	public void testZigzagConvert() {
-		String s = Solution.zigzagConvert(Constants.ZIGZAG_CONVERT_CASE, 3);
+		String s = Solution01.zigzagConvert(Constants.ZIGZAG_CONVERT_CASE, 3);
 		// String s = Solution.zigzagConvert("abcd", 2);
 		System.out.println(s);
 	}
 
 	// @Test
 	public void testReverseInt() {
-		int x = Solution.reverseInt(Constants.REVERSE_INT_CASE);
+		int x = Solution01.reverseInt(Constants.REVERSE_INT_CASE);
 		System.out.println(x);
 	}
 
 	// @Test
 	public void testMyAtoi() {
 		for (String s : Constants.STRING_TO_INT_CASE) {
-			int x = Solution.myAtoi(s);
+			int x = Solution01.myAtoi(s);
 			System.out.println(s + " atoi: " + x);
 		}
 	}
 
 	// @Test
 	public void testRegExpMatch() {
-		boolean res = Solution.isRegExpMatch(Constants.REGULAR_EXPRESSION_S, Constants.REGULAR_EXPRESSION_P);
+		boolean res = Solution01.isRegExpMatch(Constants.REGULAR_EXPRESSION_S, Constants.REGULAR_EXPRESSION_P);
 		System.out.println("RegExp match result: " + res);
 	}
 
 	// @Test
 	public void testMaxArea() {
-		int result = Solution.maxArea(Constants.MAX_AREA_CASE);
+		int result = Solution01.maxArea(Constants.MAX_AREA_CASE);
+		System.out.println(result);
+	}
+
+	// @Test
+	public void testInt2Roman() {
+		String result = Solution01.intToRoman(Constants.INT_TO_ROMAN_CASE);
+		System.out.println(result);
+	}
+
+	// @Test
+	public void testRoman2Int() {
+		int result = Solution01.romanToInt("CDCXXI");
 		System.out.println(result);
 	}
 
 	@Test
-	public void testInt2Roman() {
-		String result = Solution.intToRoman(Constants.INT_TO_ROMAN_CASE);
+	public void testLongestCommonPrefix() {
+		String[] arr = {"abc", "abcd", "abad", "abhsdf"};
+		String result = Solution02.longestCommonPrefix2(arr);
 		System.out.println(result);
 	}
 

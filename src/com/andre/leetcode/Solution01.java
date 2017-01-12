@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Solution {
+public class Solution01 {
 
 	/**
 	 * 给定一个整数数组和一个目标整数，若数组中有两个元素加和等于目标，返回这两个元素的下标。
@@ -552,4 +552,31 @@ public class Solution {
 		}
 		return sb.toString();
 	}
+
+	/**
+	 * 罗马数字转整数。
+	 * 
+	 * @param s
+	 * @return
+	 */
+	public static int romanToInt(String s) {
+		String roman = "IVXLCDMivxlcdm";
+		int[] rNumber = {1, 5, 10, 50, 100, 500, 1000};
+		int result = 0;
+		int n = s.length();
+		int i = 0;
+		while (i < n) {
+			int idx1 = roman.indexOf(s.charAt(i)) % 7;
+			int idx2;
+			if (i + 1 < n && (idx2 = roman.indexOf(s.charAt(i + 1)) % 7) > idx1) {
+				result = result + rNumber[idx2] - rNumber[idx1];
+				i = i + 2;
+			} else {
+				result = result + rNumber[idx1];
+				i = i + 1;
+			}
+		}
+		return result;
+	}
+
 }
