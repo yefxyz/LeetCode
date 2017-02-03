@@ -579,4 +579,42 @@ public class Solution01 {
 		return result;
 	}
 
+	/**
+	 * 整数转中文数字。
+	 * 
+	 * @param num
+	 * @return
+	 */
+	public static String intToChinese(int num) {
+		// Integer.MAX_VALUE = 2^31 - 1 > 二十亿。
+		String[] cnDigits = {"", "十", "百", "千"};
+		String[] cnBigs = {"", "万", "亿", "兆", "京"};
+		String[] cnNums = {"零", "一", "二", "三", "四", "五", "六", "七", "八", "九"};
+		String minus = "";
+		String result = "";
+		if (num < 0) {
+			minus = "负";
+			num = -num;
+		}
+		int d = 0;
+		while (num > 0) {
+			int n = num % 10;
+			if (n == 0) {
+				if (result.length() > 0 && result.indexOf(cnNums[n]) != 0) {
+					result = cnNums[n] + result;
+				}
+			} else {
+				String big = cnBigs[d / 4];
+				if (result.indexOf(big) == -1) {
+					result = cnNums[n] + cnDigits[d % 4] + big + result;
+				} else {
+					result = cnNums[n] + cnDigits[d % 4] + result;
+				}
+			}
+			d++;
+			num = num / 10;
+		}
+		return minus + result;
+	}
+
 }

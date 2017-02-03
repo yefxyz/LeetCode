@@ -98,10 +98,17 @@ public class UnitTest {
 		System.out.println(result);
 	}
 
-	@Test
+	// @Test
 	public void testLongestCommonPrefix() {
 		String[] arr = {"abc", "abcd", "abad", "abhsdf"};
 		String result = Solution02.longestCommonPrefix2(arr);
+		System.out.println(result);
+	}
+
+	@Test
+	public void testIntToChinese() {
+		int num = -2145617894;
+		String result = Solution01.intToChinese(num);
 		System.out.println(result);
 	}
 
