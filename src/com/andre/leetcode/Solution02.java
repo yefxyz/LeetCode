@@ -1,5 +1,9 @@
 package com.andre.leetcode;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Solution02 {
 
 	/**
@@ -42,6 +46,34 @@ public class Solution02 {
 		} else {
 			return commonPrefix(strs[n - 1], lcp(strs, n - 1));
 		}
+	}
+
+	public static List<List<Integer>> threeSum(int[] nums) {
+		// 首先排序。
+		Arrays.sort(nums);
+		List<List<Integer>> res = new ArrayList<>();
+		for (int i = 0; i < nums.length - 2; i++) {
+			if (i > 0 && nums[i] == nums[i - 1]) {
+				// 跳过相同的数字，已处理过。
+				continue;
+			}
+			int lo = i + 1, hi = nums.length - 1, sum = 0 - nums[i];
+			while (lo < hi) {
+				if (nums[lo] + nums[hi] == sum) {
+					res.add(Arrays.asList(nums[i], nums[lo], nums[hi]));
+					while (lo < hi && nums[lo] == nums[lo + 1])
+						lo++;
+					while (lo < hi && nums[hi] == nums[hi - 1])
+						hi--;
+					lo++;
+					hi--;
+				} else if (nums[lo] + nums[hi] < sum)
+					lo++;
+				else
+					hi--;
+			}
+		}
+		return res;
 	}
 
 }
