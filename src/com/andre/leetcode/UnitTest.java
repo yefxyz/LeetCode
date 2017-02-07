@@ -105,11 +105,20 @@ public class UnitTest {
 		System.out.println(result);
 	}
 
-	@Test
+	// @Test
 	public void testIntToChinese() {
 		int num = -2145617894;
 		String result = Solution01.intToChinese(num);
 		System.out.println(result);
 	}
 
+	// @Test
+	public void testFizzBuzz() {
+		Solution01.fizzBuzz();
+	}
+	
+	@Test
+	public void testFactorial() {
+		System.out.println(Solution01.factorial(6));
+	}
 }
