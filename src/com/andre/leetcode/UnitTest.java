@@ -1,5 +1,7 @@
 package com.andre.leetcode;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -105,11 +107,25 @@ public class UnitTest {
 		System.out.println(result);
 	}
 
-	@Test
+	// @Test
 	public void testIntToChinese() {
 		int num = -2145617894;
 		String result = Solution01.intToChinese(num);
 		System.out.println(result);
+	}
+
+	// @Test
+	public void testThreeSumClosest() {
+		// int nums[] = {-1, 5, 4, 10, -12, 1, 2, 3};
+		int nums[] = {1, 1, 1, 0};
+		int result = Solution02.threeSumClosest(nums, 100);
+		System.out.println(result);
+	}
+
+	@Test
+	public void testLetterCombinations() {
+		List<String> list = Solution02.letterCombinations2("231");
+		list.parallelStream().forEach(System.out::println);
 	}
 
 }
