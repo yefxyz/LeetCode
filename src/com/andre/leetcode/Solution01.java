@@ -617,4 +617,44 @@ public class Solution01 {
 		return minus + result;
 	}
 
+	public static void fizzBuzz() {
+		boolean fbFlag = false;
+		for (int i = 1; i <= 100; i++) {
+
+			// 最直接，判断有重复。
+			// System.out.println(i % 3 == 0 && i % 5 == 0
+			// ? "fizzbuzz"
+			// : i % 3 == 0 ? "fizz" : i % 5 == 0 ? "buzz" : i);
+
+			// 引入flag.
+			if (i % 3 == 0) {
+				System.out.print("fizz");
+				fbFlag = true;
+			}
+			if (i % 5 == 0) {
+				System.out.print("buzz");
+				fbFlag = true;
+			}
+			if (!fbFlag) {
+				System.out.print(i);
+			}
+			System.out.println();
+			fbFlag = false;
+
+		}
+	}
+
+	/**
+	 * 递归计算阶乘，尾递归优化设计（不过Java本身还不支持优化）。
+	 * 
+	 * @param num
+	 * @return
+	 */
+	public static int factorial(int num) {
+		return doFactorial(num, 1);
+	}
+	private static int doFactorial(int num, int res) {
+		return num == 1 ? res : doFactorial(num - 1, num * res);
+	}
+
 }
